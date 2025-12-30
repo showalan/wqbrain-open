@@ -1,11 +1,11 @@
 # wqbrain-open
 
-A minimal, resumable batch **simulate → store results to SQLite** tool for WorldQuant Brain.
+A minimal, resumable batch tool that reads alphas (FASTEXPR formulas) from a `.txt` file, submits them to WorldQuant Brain for simulation/testing, and stores results in SQLite.
 
 Scope (intentionally small):
-- Input: a `.txt` file with **one FASTEXPR formula per line**
-- Runs `POST /simulations`, polls until finished, fetches alpha details
-- Stores results + errors + status in SQLite
+- Input: a `.txt` file with **one FASTEXPR formula per line** (you can append more lines to add more alphas)
+- Submits simulations (`POST /simulations`), polls until finished, fetches alpha details
+- Stores results + errors + status in SQLite (supports resume)
 - Supports concurrency, global rate limiting, resume, operator fallback, and automatic retries
 
 ## Setup
@@ -13,7 +13,7 @@ Scope (intentionally small):
 1) Create a virtual environment and install:
 
 ```powershell
-cd d:\MyProject\wqbrain-open
+cd path\to\wqbrain-open
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -U pip
